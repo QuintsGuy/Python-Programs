@@ -1,3 +1,15 @@
+# Tristan Knott
+# Week 1 Lab 1
+#
+# Variables Used:
+# check_again       (y/n) string
+# capacity          room capacity
+# event_attendace   amount of attendees to the event
+# check_room        difference between room capacity and number of attendees
+# extra_attendees   number of attendees who can still attend
+# returned_option   stores returned value from check_again function
+#
+# =======================================================
 import os
 
 def capacity():
