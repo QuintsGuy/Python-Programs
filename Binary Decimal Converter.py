@@ -50,10 +50,10 @@ def run_again():
 
 while True:
     select_option=input("""Hello! I convert Binary & Decimal numbers to their respective counterparts!
-1 - Convert from Binary to Decimal
-2 - Convert from Decimal to Binary
-    
-Please select an option above: """)
+    1 - Convert from Binary to Decimal
+    2 - Convert from Decimal to Binary
+        
+    Please select an option above: """)
     try:
         select_option=int(select_option)
     except ValueError:
@@ -70,6 +70,7 @@ Please select an option above: """)
                     print("Invalid input -- try entering a binary number\n")
                     continue
             bin_list=[int(i) for i in str(bin_num)]
+            print(bin_list)
             if len(bin_list)==8:
                 new_dec=decimal(bin_list)
                 print(f"{bin_num} in binary is decimal number {new_dec}")
