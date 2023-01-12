@@ -1,6 +1,3 @@
-#ideas for improvement:
-#use len() to measure how many binary places so input doesn't have to be 8 long
-
 import os
 
 def binary(dec_num):  
