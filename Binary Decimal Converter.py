@@ -12,9 +12,7 @@ def decimal(bin_num):
     decimal = 0
     bin_num=bin_num[::-1]
     for i in range(len(bin_num)):
-        print(decimal)
         decimal+=int(bin_num[i])*(2**i)
-        print(decimal)
     return decimal
 
 def run_again():
