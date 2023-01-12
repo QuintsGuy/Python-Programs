@@ -4,35 +4,19 @@
 import os
 
 def binary(dec_num):  
-    new_bin=[0,0,0,0,0,0,0,0]
-    if (dec_num-128)>=0:
-        dec_num-=128
-        new_bin[0]="1"
-    if (dec_num-64)>=0:
-        dec_num-=64
-        new_bin[1]="1"
-    if (dec_num-32)>=0:
-        dec_num-=32
-        new_bin[2]="1"
-    if (dec_num-16)>=0:
-        dec_num-=16
-        new_bin[3]="1"
-    if (dec_num-8)>=0:
-        dec_num-=8
-        new_bin[4]="1"
-    if (dec_num-4)>=0:
-        dec_num-=4
-        new_bin[5]="1"
-    if (dec_num-2)>=0:
-        dec_num-=2
-        new_bin[6]="1"
-    if (dec_num-1)>=0:
-        dec_num-=1
-        new_bin[7]="1"
-    return (f"{new_bin[0]}{new_bin[1]}{new_bin[2]}{new_bin[3]}{new_bin[4]}{new_bin[5]}{new_bin[6]}{new_bin[7]}")
+    binary=""
+    while dec_num>0:
+        remainder = dec_num % 2
+        binary = str(remainder)+binary
+        dec_num=dec_num//2
+    return binary
 
-def decimal(bin_list):     
-    return bin_list[0]*128 + bin_list[1]*64 + bin_list[2]*32 + bin_list[3]*16 + bin_list[4]*8 + bin_list[5]*4 + bin_list[6]*2 + bin_list[7]*1
+def decimal(bin_num):     
+    decimal = 0
+    bin_num=bin_num[::-1]
+    for i in range(len(bin_num)):
+        decimal+=int(bin_num[1])*(2**i)
+    return decimal
 
 def run_again():
   while True:
@@ -49,11 +33,10 @@ def run_again():
       print("Invalid input -- try again")
 
 while True:
-    select_option=input("""Hello! I convert Binary & Decimal numbers to their respective counterparts!
-    1 - Convert from Binary to Decimal
-    2 - Convert from Decimal to Binary
-        
-    Please select an option above: """)
+    print("Hello! I convert Binary & Decimal numbers to their respective counterparts!")
+    print("1 - Convert from Binary to Decimal")
+    print("2 - Convert from Decimal to Binary")
+    select_option=input("\nPlease select an option above: ")
     try:
         select_option=int(select_option)
     except ValueError:
@@ -61,7 +44,7 @@ while True:
         continue
     if select_option==1:
         while True:
-            bin_num=input("Please enter a binary number with 8 digits: ")
+            bin_num=input("Please enter a binary number: ")
             while True:
                 try:
                     bin_num=int(bin_num)
@@ -69,28 +52,24 @@ while True:
                 except ValueError:
                     print("Invalid input -- try entering a binary number\n")
                     continue
-            bin_list=[int(i) for i in str(bin_num)]
-            print(bin_list)
-            if len(bin_list)==8:
-                new_dec=decimal(bin_list)
-                print(f"{bin_num} in binary is decimal number {new_dec}")
-                break
-            else:
-                print("Invalid input -- Please enter a binary number 8 digits long\n")
-                continue
+            bin_num=str(bin_num)
+            new_dec=decimal(bin_num)
+            print(f"{bin_num} in binary is decimal number {new_dec}")
+            break
+            
     elif select_option==2:
         while True:
-            dec_num=input("Please enter a number between 0 and 255: ")
+            dec_num=input("Please enter a decimal number greater than 0: ")
             try:
                 dec_num=int(dec_num)
                 break
             except ValueError:
                 print("Invalid input -- try entering an integer\n")
-        if 0<=dec_num<255:
+        if dec_num>0:
             new_bin=binary(dec_num)
             print(f"The decimal number {dec_num} is {new_bin} in binary")
         else:
-            print("Invalid input -- please enter a number between 0 and 255")
+            print("Invalid input -- please enter a decimal number greater than 0: ")
     else:
         print("Invalid input -- Please select either option 1 or option 2\n")
     
