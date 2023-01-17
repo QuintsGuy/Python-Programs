@@ -69,6 +69,7 @@ while True:
             print("Invalid input -- please enter a decimal number greater than 0: ")
     else:
         print("Invalid input -- Please select either option 1 or option 2\n")
+        continue
     
     returned_option=run_again()
     
