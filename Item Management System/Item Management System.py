@@ -1,5 +1,8 @@
+import csv
+
 class Item:
     pay_rate = 0.8 # The pay rate after 20% discount
+    all = []
     def __init___(self, name: str, price: float, quantity=0):
         # Run validations to the received arguments
         assert price >= 0, f"Price {price} is not greater than or equal to zero!"
@@ -10,11 +13,30 @@ class Item:
         self.price = price
         self.quantity = quantity
 
+        # Actions to execute
+        Item.all.append(self)
+
     def calculate_total_price(self):
         return self.price * self.quantity
 
     def apply_discount(self):
-        self.price = self.price * Item.pay_rate
+        self.price = self.price * self.pay_rate
+
+    @classmethod
+    def instantiate_from_csv(cls):
+        with open('items.csv', 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+        
+        for item in items:
+            Item(
+                name = item.get('name'),
+                price = float(item.get('price')),
+                quantity = int(item.get('quantity'))
+            )
+    
+    def __repr__(self):
+        return f"Item('{self.name}', {self.price}, {self.quantity})"
 
 class Phone(Item):
     all=[]
@@ -35,4 +57,7 @@ class Phone(Item):
 
 phone1 = Phone("jscPhonev10", 500, 5, 1)
 print(phone1.calculate_total_price())
-phone2 = Phone("jscPhonev20", 700, 5, 1)
+phone2 = Phone("jscPhonev20", 700, 5, 1) 
+
+for instance in Item.all:
+    print(instance.name)
