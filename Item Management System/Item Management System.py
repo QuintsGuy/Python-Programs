@@ -35,6 +35,18 @@ class Item:
                 quantity = int(item.get('quantity'))
             )
     
+    @staticmethod
+    def is_integer(num):
+        # We will count out the floats that are point zero
+        # For i,e: 5.0, 10.0
+        if isinstance(num, float):
+            # Count out the floats that are point zero
+            return num.is_integer()
+        elif isinstance(num, int):
+            return True
+        else:
+            return False
+
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
@@ -58,6 +70,3 @@ class Phone(Item):
 phone1 = Phone("jscPhonev10", 500, 5, 1)
 print(phone1.calculate_total_price())
 phone2 = Phone("jscPhonev20", 700, 5, 1) 
-
-for instance in Item.all:
-    print(instance.name)
