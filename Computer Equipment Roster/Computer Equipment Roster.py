@@ -24,23 +24,17 @@ def get_file(csv_file):
         report = list(file)
         print('{:<10}{:<10}{:<5}{:<5}{:<10}{:<10}{:<10}{:<5}{:<5}'.format('Type', 'Brand', 'CPU', 'RAM', '1st Disk', 'No HDD', '2nd Disk', 'OS', 'YR'))
         for row in report:
-            if row[8] == '':
-                computer_type = row[0]
-                computer_brand = row[1]
-                cpu_type = row[2]
-                amount_ram = row[3]
-                disk1 = row[4]
-                num_hdd = row[5]
+            computer_type = row[0]
+            computer_brand = row[1]
+            cpu_type = row[2]
+            amount_ram = row[3]
+            disk1 = row[4]
+            num_hdd = row[5]
+            if num_hdd == "1":
                 disk2 = row[8]
                 operating_system = row[6]
                 man_year = row[7]
             else:
-                computer_type = row[0]
-                computer_brand = row[1]
-                cpu_type = row[2]
-                amount_ram = row[3]
-                disk1 = row[4]
-                num_hdd = row[5]
                 disk2 = row[6]
                 operating_system = row[7]
                 man_year = row[8]
